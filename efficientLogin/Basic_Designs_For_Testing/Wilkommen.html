@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<head>
+	<link href="login_dostyle.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+	
+		<div class="formplace">
+			
+			<h2>Welcome!<br>You've logged in! </h2>
+		</form>
+
+</body>
+
+
+	
+<script>
+function check(){
+if(document.forms['yes']['uname'].value=="")
+{alert("Please enter the username!!");
+return false;}
+if(document.forms['yes']['pwrd'].value=="")
+{alert("Please enter the PASSWORD!!");
+return false;}
+if(!(/[a-z A-z]*\d[a-z A-z]*/.test(document.forms['yes']['pwrd'].value))|!/^.{4,15}$/.test(document.forms['yes']['pwrd'].value)){
+alert("Invalid Password.");
+return false;}
+}
+</script>
+
+</html>

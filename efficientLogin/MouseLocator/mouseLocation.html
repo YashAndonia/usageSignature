@@ -1,0 +1,126 @@
+<!--This program identifies threee things:
+    1)The curretn position of the user's mouse on the screen.
+    2)The position at which the user has clicked, so that we may use this information
+    3)The position at which the user mouse was initally when the webpage loaded
+
+    References:
+    
+    http://ehudashkenazi.com/content/mouse-pointer-location-browser
+-->
+
+<html>
+    <head>
+        <script>
+           
+           
+            //this checks for the presence of IE or not- since apparently there is a different syntax required for that
+
+            var IEDetected;
+            IEDetected = document.all;//document.all will retrun true, if this is opened in IE, a proprety of IE apparently
+
+            if (IEDetected)
+            {
+             // IE detected - attach event listeners
+            document.attachEvent("onmousemove",trackMouseLocationXY);
+            document.attachEvent("onclick",saveMouseLocationXY);
+         }
+            else
+             {
+             // Not IE – add event listeners
+            document.addEventListener("mousemove",trackMouseLocationXY,false);
+            document.addEventListener("click",saveMouseLocationXY,false);
+            }
+            
+
+
+            //these values help us identify the exact position of the mosue at the moment the page starts
+            var stateX=0;
+            var stateY=0;
+            //where we store the values of initial X and Y
+            var initialPosX;
+            var initialPosY;
+
+            //checks if the state==0 and then will put the current position into the X,Y
+
+            function xPutter(posn){
+                if (stateX==0){
+                    initialPosX=posn;
+                    stateX++;
+                }
+                document.getElementById("initialPosnPrinterX").innerHTML = "\nInitially, it was at x="+initialPosX+"";
+                
+            }
+
+
+            
+
+            function yPutter(posn){
+                if (stateY==0){
+                    initialPosY=posn;
+                    stateY++;
+                }
+                document.getElementById("initialPosnPrinterY").innerHTML = "\nInitially, it was at y="+initialPosY+"";
+
+            }
+
+
+            
+
+
+            //this tracks the exact location of the mosuse on the screen, while it is moving.
+             function trackMouseLocationXY(e)
+            {
+             // get mouse cursor location
+                getMouseLocationXY(e);
+
+                // display mouse cursor location inside div and position the div next to the cursor
+                document.getElementById("thePositionPrinter").innerHTML = 'X: '+iMouseX+'; Y: '+iMouseY+';';
+
+                xPutter(iMouseX);
+                yPutter(iMouseY);
+                
+            }
+
+
+
+
+                    
+            // saves the location of the mouse and displays it in browser window
+            function saveMouseLocationXY(e)
+            {
+                // get mouse cursor location
+                getMouseLocationXY(e);
+
+                // display mouse cursor location exactly where the click was made
+                document.getElementById("ClickLocation").innerHTML = 'X: '+iMouseX+'; Y: '+iMouseY+';';
+            }
+            
+
+            // gets the location of the mouse inside the browser window
+            function getMouseLocationXY(e)
+            {
+                // check if IE
+                if (IEDetected)
+                {
+                    iMouseX = event.clientX;
+                    iMouseY = event.clientY;
+                }
+                else
+                {
+                    iMouseX = e.pageX;
+                    iMouseY = e.pageY;
+                }
+            }
+        
+        </script>
+        
+    </head>
+    <body onload="return trackMouseLocationXY();">
+        <h1>The position is:</h1><br>
+        <h1 id="thePositionPrinter"></h1><br>
+        <h1>Yiu clicked at</h1>
+        <h1 id="ClickLocation"></h1>
+        <h1 id="initialPosnPrinterX"></h1>
+        <h1 id="initialPosnPrinterY"></h1>
+    </body>
+</html>

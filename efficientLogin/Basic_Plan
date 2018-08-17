@@ -1,0 +1,25 @@
+/*
+
+
+*First- we will make a base login page- this login page has all the key login elements centered. 
+*The user will be expected to follow the traditional guidelines of a login- such as a password with 1 uppercase, 1 lowercase, 1 numeric etc.
+*As soon as the page is opened, the start time of the session is to be noted and kept in a variable.    
+*Once the user has completed a login, the time taken to login will be calculated.
+*This value will be presented to the user.
+
+*This is to be repeated for the other traditional layouts of the login page as well: topLeft, and topRight.
+*At the end, we will use our modified and efficient edition of the login.
+*This page will position the div element carrying the login block exactly where the mouse cursor is, at the time of starting the website.
+*Doing so, should significantly decrease the time taken to login, by the user.
+*Intend to do a survey to idenitfy the responses of the users of this page, to identify whetheror not it improved the experience.
+
+
+*This project is to be further expanded to identify the usage signatre of the user of the webpage.
+*The mission is to give the website the ability to re-adjust all the components of a webpage automatically based on usage signature, to significantly improve the user experience.
+
+
+
+
+
+
+*/
