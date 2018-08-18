@@ -131,7 +131,7 @@
 			<a href=""></a>
 			<a href=""></a>
 	
-		<form  action="Wilkommen.html" name="yes" method="GET" class="formplace"onsubmit="return check();" id="form">
+		<form  action="Wilkommen.html" name="yes" method="POST" class="formplace"onsubmit="return check();" id="form">
 			
 			<h2>User Name</h2>
 				<input type="text" name="uname" class="ip" placeholder="Enter a username here- no punctuation marks!">
@@ -188,7 +188,9 @@ function initialize(){
 function calc(){
 	endTime=new Date();
 	elapsedTime=endTime-startTime;
-	window.alert("Time taken:\n"+elapsedTime+" milliseconds");
+	localStorage.setItem("time1",elapsedTime);
+	//window.alert("Time taken:\n"+elapsedTime+" milliseconds");
+
 	return true;
 
 }

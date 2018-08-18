@@ -6,12 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
+<body onload="displayer();">
 
 	
 		<div class="formplace">
 			
 			<h2>Welcome!<br>You've logged in! </h2>
+			<h2 id="time"></h2>
 		</form>
 
 </body>
@@ -19,17 +20,11 @@
 
 	
 <script>
-function check(){
-if(document.forms['yes']['uname'].value=="")
-{alert("Please enter the username!!");
-return false;}
-if(document.forms['yes']['pwrd'].value=="")
-{alert("Please enter the PASSWORD!!");
-return false;}
-if(!(/[a-z A-z]*\d[a-z A-z]*/.test(document.forms['yes']['pwrd'].value))|!/^.{4,15}$/.test(document.forms['yes']['pwrd'].value)){
-alert("Invalid Password.");
-return false;}
-}
+	function displayer(){
+		var timewa=localStorage.getItem("time1");
+		document.getElementById("time").innerHTML=timewa;
+	}
+
 </script>
 
 </html>
