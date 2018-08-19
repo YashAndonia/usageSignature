@@ -14,6 +14,10 @@ The aim of this project is to make the average user's interaction with a website
 *I intend to conduct a survey to idenitfy the responses of the users of this page, to identify the extent to which it improved the
 user experience.
 
+![Demo](https://user-images.githubusercontent.com/26602639/44305767-e6130800-a39d-11e8-94e5-e9951ae70523.gif)
+
+
+
 
 *This project is to be further expanded to identify the 'usage signature' of the user of the webpage.
 *The mission is to give a website the ability to re-adjust all the components of the webpage automatically,
