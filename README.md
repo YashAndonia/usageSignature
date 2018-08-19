@@ -1,4 +1,4 @@
-#H1The aim of this project is to make the average user's interaction with a website more efficient and intuitive.
+# The aim of this project is to make the average user's interaction with a website more efficient and intuitive.
 
 
 *First- we will make a base login page- this login page has all the key login elements centered. 
@@ -13,6 +13,9 @@
 *Doing so, should significantly decrease the time taken to login, by the user.
 *I intend to conduct a survey to idenitfy the responses of the users of this page, to identify the extent to which it improved the
 user experience.
+
+# An example of an efficient Login system, where the input areas appear exactly where the mouse is placed.
+
 
 ![Demo](https://user-images.githubusercontent.com/26602639/44305767-e6130800-a39d-11e8-94e5-e9951ae70523.gif)
 
