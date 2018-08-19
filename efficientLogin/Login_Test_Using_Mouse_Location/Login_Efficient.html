@@ -3,6 +3,7 @@
 <head>
 	<link href="login_dostyle.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,7 +13,6 @@
            
            
 		//this checks for the presence of IE or not- since apparently there is a different syntax required for that
-
 		var IEDetected;
 		IEDetected = document.all;
 		
@@ -30,7 +30,7 @@
 		document.addEventListener("mousemove",trackMouseLocationXY,false);
 		}
 		
-
+	
 
 		//these values help us identify the exact position of the mosue at the moment the page starts
 		var stateX=0;
@@ -66,12 +66,37 @@
 		//this tracks the exact location of the mosuse on the screen, while it is moving.
 		function trackMouseLocationXY(e)
 		{
+
+			var Xform;
+			var Yform;
+
 		 // get mouse cursor location
 			getMouseLocationXY(e);
 
-			xPutter(iMouseX);
-			yPutter(iMouseY);
+			XForm=xPutter(iMouseX);
+			YForm=yPutter(iMouseY);
+
+			loginPositionChanger(XForm,YForm);
 			
+		}
+
+
+
+
+
+//changes where the login word- the head of the page will move, wrt to the formplace
+		function loginPositionChanger(xForm,yForm){
+			rightPosn=$(window).width()-xForm;
+
+			if(rightPosn<(xForm+$(".formplace").width()) &&rightPosn>xForm )
+				document.getElementById("titles").style.left="0px";
+			else
+				document.getElementById("titles").style.right=xForm+"px";
+			
+			
+			document.getElementById("titles").style.top=yForm+"px";
+			
+
 		}
 
 
@@ -80,24 +105,50 @@
 		//checks if the state==0 and then will put the current position into the X,Y
 
 		function xPutter(posn){
+			var finalXCoordinateForm;
+
+
 			if (stateX==0){
 				initialPosX=posn;
 				stateX++;
 			}
 			
-			document.getElementById("form").style.left=initialPosX+"px";
+			rightDisplacement=($(window).width()-initialPosX);
+
+			if(rightDisplacement>=$(".formplace").width())
+				finalXCoordinateForm=initialPosX;
+			else
+				finalXCoordinateForm=($(window).width()-$(".formplace").width());
+				
+			document.getElementById("form").style.left=finalXCoordinateForm+"px";
+
+			return finalXCoordinateForm;
 		}
 
 
 		
 
 		function yPutter(posn){
+
+			var finalYCoordinateForm;
+
 			if (stateY==0){
 				initialPosY=posn;
 				stateY++;
 			}
-		
-			document.getElementById("form").style.top=initialPosY+"px";
+			
+			bottomDisplacement=($(window).height()-initialPosY);
+
+			if(bottomDisplacement>=$(".formplace").height())
+				finalYCoordinateForm=initialPosY;
+			else
+				finalYCoordinateForm=($(window).height()-$(".formplace").height());
+			
+			
+				document.getElementById("form").style.top=finalYCoordinateForm+"px";
+			
+			return finalYCoordinateForm;
+
 		}
 
 
@@ -130,7 +181,7 @@
 			<a href=""></a>
 			<a href=""></a>
 			<a href=""></a>
-	
+		<h1 class="website_name" id="titles">Log In</h1>
 		<form  action="Wilkommen.html" name="yes" method="POST" class="formplace"onsubmit="return check();" id="form">
 			
 			<h2>User Name</h2>
@@ -188,7 +239,7 @@ function initialize(){
 function calc(){
 	endTime=new Date();
 	elapsedTime=endTime-startTime;
-	localStorage.setItem("time1",elapsedTime);
+	localStorage.setItem("time1-",elapsedTime);
 	//window.alert("Time taken:\n"+elapsedTime+" milliseconds");
 
 	return true;

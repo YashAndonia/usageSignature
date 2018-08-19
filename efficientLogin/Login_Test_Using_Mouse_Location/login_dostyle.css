@@ -1,14 +1,14 @@
 body{
 	background-image:url("RandomWallpaper.jpg");
-	background-repeat:no repeat;
+	background-repeat: no-repeat;
 }
 
 .website_name{
-	font-size:6em;
+	font-size:8em;
 		margin:0px 0px 0px 50px;
 		font-family: 'Montserrat', sans-serif;
 		color:white;
-		position: fixed;
+		position: absolute;
 }
 header{	
 	margin-left:0px;
