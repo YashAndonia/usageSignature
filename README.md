@@ -25,7 +25,7 @@ user experience.
 *This project is to be further expanded to identify the 'usage signature' of the user of the webpage.
 *The mission is to give a website the ability to re-adjust all the components of the webpage automatically,
 based on the user's usage signature, to significantly improve the user experience.
-*The idea is that different people tend to access different poeces of information as soon as they enter a website.
+*The idea is that different people tend to access different pieces of information as soon as they enter a website.
 *For example, one user may access github and may immediately go to the repositories page.
 *Wheras, another user may immediately go to their profile.
 *Based on the usage activity on the page, I will try to readjust the content of the page so that usually preferred items may be shown first.
