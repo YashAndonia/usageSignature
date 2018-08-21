@@ -35,57 +35,38 @@ https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-
     <script>
 
         //the assumed x and y positions of mouse
-         var posX=1;
-        var posY=1;
+        var posX=300;
+        var posY=390;
 
         function detailsAdder(){
+
             var countOfAllDivs=$(".testBlock").length;
             var i=0;
             var everyDiv=document.getElementsByClassName("testBlock");
+
+
 
           
 
 
             for(i=0;i<countOfAllDivs;i++){
-                /*
-                var adding= $(everyDiv[i]).css("left");
-                var minDisplacementX;
-                if(adding=="auto"){
-                    minDisplacementX=0;
-                }
-                else{
-                    minDisplacementX=eval(adding);
-                }
-                       
-                
-                var maxDisplacementX=$(everyDiv[i]).width()+minDisplacementX;
-
-
-                adding= $(everyDiv[i]).css("top");
-                alert(adding);
-                var minDisplacementY;
-                if(adding=="auto"){
-                    minDisplacementY=0;
-                }
-                else{
-                    minDisplacementY=eval(adding);
-                }
-                       
-                
-                var maxDisplacementY=$(everyDiv[i]).height()+minDisplacementY;
-
-
-                
-
-               // if(minDisplacementX<=posX&&posX<=maxDisplacementX&&minDisplacementY<=posY&&posY<=maxDisplacementY){
-                 //   alert("You are in box number "+i);
-                //}
-
-                */
+              
 
                 var coOrdinates=everyDiv[i].getBoundingClientRect();
+                var minDisplacementX=coOrdinates.left;
+                var minDisplacementY=coOrdinates.top;
+                var maxDisplacementX=coOrdinates.left+$(everyDiv[i]).width();
+                var maxDisplacementY=coOrdinates.top+$(everyDiv).height();
 
-                alert(coOrdinates.top+" "+ coOrdinates.left+" "+coOrdinates.right+" "+coOrdinates.bottom);
+
+                if(minDisplacementX<=posX&&maxDisplacementX>=posX){
+                    if(minDisplacementY<=posY&&maxDisplacementY>=posY){
+                        
+                         alert("you are in div number "+(i+1));
+                    }
+                }
+                
+                $(everyDiv[i]).html("Max X is "+maxDisplacementX+" and maxY is "+maxDisplacementY);
 
             }
 
