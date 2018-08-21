@@ -70,7 +70,7 @@ https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-
 
                     // display mouse cursor location inside div and position the div next to the cursor
                     document.getElementById("thePositionPrinter").innerHTML = 'X: '+iMouseX+'; Y: '+iMouseY+';';
-
+                    detailsAdder(iMouseX,iMouseY);
                     
                 }
 
@@ -109,11 +109,11 @@ https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-
 //DIV IDENTIFYING REGION:
 
         //the assumed x and y positions of mouse
-        var posX=100;
-        var posY=0;
+       
 
-        function detailsAdder(){
-
+        function detailsAdder(x,y){
+            var posX=x;
+            var posY=y;
             var countOfAllDivs=$(".testBlock").length;
             var i=0;
             var everyDiv=document.getElementsByClassName("testBlock");
