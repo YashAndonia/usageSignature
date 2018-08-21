@@ -1,0 +1,95 @@
+<!--Some interesting references, used to find the boudming coordinates of x,y:
+https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
+-->
+
+<html>
+    <head>
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+        <style>
+            .testBlock{
+
+                width:20%;
+                height:40%;
+                background-color:rgb(244, 248, 4) ;
+            };
+
+
+        </style>
+    </head>
+
+    <body onload="return detailsAdder();">
+        <div class="testBlock" id="testBlock1">
+            testBlock1
+        </div >
+        <div class="testBlock" id="testBlock2">
+            testBlock2
+        </div>
+        <div class="testBlock" id="testBlock3">
+            testBlock3
+        </div >
+    
+    </body>
+
+    <script>
+
+        //the assumed x and y positions of mouse
+         var posX=1;
+        var posY=1;
+
+        function detailsAdder(){
+            var countOfAllDivs=$(".testBlock").length;
+            var i=0;
+            var everyDiv=document.getElementsByClassName("testBlock");
+
+          
+
+
+            for(i=0;i<countOfAllDivs;i++){
+                /*
+                var adding= $(everyDiv[i]).css("left");
+                var minDisplacementX;
+                if(adding=="auto"){
+                    minDisplacementX=0;
+                }
+                else{
+                    minDisplacementX=eval(adding);
+                }
+                       
+                
+                var maxDisplacementX=$(everyDiv[i]).width()+minDisplacementX;
+
+
+                adding= $(everyDiv[i]).css("top");
+                alert(adding);
+                var minDisplacementY;
+                if(adding=="auto"){
+                    minDisplacementY=0;
+                }
+                else{
+                    minDisplacementY=eval(adding);
+                }
+                       
+                
+                var maxDisplacementY=$(everyDiv[i]).height()+minDisplacementY;
+
+
+                
+
+               // if(minDisplacementX<=posX&&posX<=maxDisplacementX&&minDisplacementY<=posY&&posY<=maxDisplacementY){
+                 //   alert("You are in box number "+i);
+                //}
+
+                */
+
+                var coOrdinates=everyDiv[i].getBoundingClientRect();
+
+                alert(coOrdinates.top+" "+ coOrdinates.left+" "+coOrdinates.right+" "+coOrdinates.bottom);
+
+            }
+
+        }
+    
+    </script>
+</html>
