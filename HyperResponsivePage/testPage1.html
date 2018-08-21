@@ -17,9 +17,77 @@ https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-
 
 
         </style>
+
+
+
+
+        <script>
+//MOUSE TRACKING INFORMATION
+                    
+                //this checks for the presence of IE or not- since apparently there is a different syntax required for that
+
+                var IEDetected;
+                IEDetected = document.all;//document.all will retrun true, if this is opened in IE, a proprety of IE apparently
+
+                if (IEDetected)
+                {
+                // IE detected - attach event listeners
+                document.attachEvent("onmousemove",trackMouseLocationXY);
+                }
+                else
+                {
+                // Not IE – add event listeners
+                document.addEventListener("mousemove",trackMouseLocationXY,false);
+                }
+                
+
+                var iMouseX;
+                var iMouseY;
+                
+
+               // gets the location of the mouse inside the browser window
+                function getMouseLocationXY(e)
+                {
+                    // check if IE
+                    if (IEDetected)
+                    {
+                        iMouseX = event.clientX;
+                        iMouseY = event.clientY;
+                    }
+                    else
+                    {
+                        iMouseX = e.pageX;
+                        iMouseY = e.pageY;
+                    }
+                }
+
+
+                //this tracks the exact location of the mosuse on the screen, while it is moving.
+                function trackMouseLocationXY(e)
+                {
+                // get mouse cursor location
+                    getMouseLocationXY(e);
+
+                    // display mouse cursor location inside div and position the div next to the cursor
+                    document.getElementById("thePositionPrinter").innerHTML = 'X: '+iMouseX+'; Y: '+iMouseY+';';
+
+                    
+                }
+
+
+
+                
+        </script>
     </head>
 
+
+
+
+
     <body onload="return detailsAdder();">
+        
+        <h1 id="thePositionPrinter"></h1><br>
+
         <div class="testBlock" id="testBlock1">
             testBlock1
         </div >
@@ -32,11 +100,17 @@ https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-
     
     </body>
 
+
+
+
     <script>
 
+
+//DIV IDENTIFYING REGION:
+
         //the assumed x and y positions of mouse
-        var posX=300;
-        var posY=390;
+        var posX=100;
+        var posY=0;
 
         function detailsAdder(){
 
