@@ -1,0 +1,46 @@
+
+<html>
+    <head>
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+        <style>
+            .testBlock{
+
+                width:20%;
+                height:40%;
+                background-color:rgb(244, 248, 4) ;
+            };
+
+
+        </style>
+
+ </head>
+
+
+
+
+
+    <body>
+        
+        <h1 id="thePositionPrinter"></h1><br>
+
+        <div class="testBlock" id="testBlock1" onmouseover="whereIAm(this.id);">
+            testBlock1
+        </div >
+        <div class="testBlock" id="testBlock2" onmouseover="whereIAm(this.id);">
+            testBlock2
+        </div>
+        <div class="testBlock" id="testBlock3" onmouseover="whereIAm(this.id);">
+            testBlock3
+        </div >
+    
+    </body>
+
+
+    <script>
+        function whereIAm(x){
+            alert("You are at "+x);
+        }
+    </script>
+</html>
