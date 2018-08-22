@@ -1,0 +1,93 @@
+
+<html>
+    <head>
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+        <style>
+            .testBlock{
+
+                width:20%;
+                height:40%;
+                background-color:rgb(244, 248, 4) ;
+            };
+
+
+        </style>
+
+ </head>
+
+
+
+
+
+    <body onload="init()">
+        
+        <h1 id="thePositionPrinter"></h1><br>
+
+        <div class="testBlock" id="testBlock1" onmouseover="whereIAm(this.id);">
+            testBlock1
+        </div >
+        <div class="testBlock" id="testBlock2" onmouseover="whereIAm(this.id);">
+            testBlock2
+        </div>
+        <div class="testBlock" id="testBlock3" onmouseover="whereIAm(this.id);">
+            testBlock3
+        </div >
+    
+
+        <form action="nextPageWithVariations.html">
+            <input type="submit">
+        </form>
+    </body>
+
+
+    <script>
+        var allDivs;        //keep all divs here
+        var allDivIds;      //keep all div ids here
+        var noOfDivs;       //keep the number if divs in this page here
+        var hoverDetails;   //kepe the number of times you have hoverwd over a div here.
+
+
+
+
+        function init(){
+            
+                    allDivs=document.getElementsByTagName("div");
+                    noOfDivs=allDivs.length;
+                    hoverDetails=new Array(noOfDivs);
+                    allDivIds=new Array(noOfDivs);
+                    var i=0;
+
+
+                    while(i<noOfDivs){
+                        hoverDetails[i]=0;
+                        allDivIds[i]=allDivs[i].id;
+                        i++;
+                    }
+        }
+
+
+        function whereIAm(x){
+
+            var i=0;
+            for(i=0;i<noOfDivs;i++){
+                if(x==allDivIds[i]){
+                    hoverDetails[i]++;
+                    
+                    alert("You are at div number "+i+ " you have visited this "+hoverDetails[i]+" times.");
+                }
+
+            }
+
+            //now we will put this info in the localStorage feature of html
+            localStorage.setItem("hoverData",JSON.stringify(hoverDetails));
+
+
+            //var printer=JSON.parse(localStorage.getItem("hoverData"));
+            //the data returned is of the type number. So, we can directly use this data to change values now.
+           //this data will be passed on to the next page, and there we will se the changes being made in the website as per the number of times you've hovered.
+          
+        }
+    </script>
+</html>
