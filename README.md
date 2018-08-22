@@ -31,4 +31,4 @@ based on the user's usage signature, to significantly improve the user experienc
 *Based on the usage activity on the page, I will try to readjust the content of the page so that usually preferred items may be shown first.
 
 # Identifying the user's usage signature in a page, to readjust the objects so that they can be easily reached the next time.
-![Demo](https://user-images.githubusercontent.com/26602639/44462618-cba58c80-a632-11e8-8187-43936561cff9.gif)
+![Demo](https://user-images.githubusercontent.com/26602639/44462757-479fd480-a633-11e8-8c1c-fe8e09fbc78d.gif)
