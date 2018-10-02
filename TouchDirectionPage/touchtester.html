@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <style>
+            body{
+                background-color: black;
+            }
+
+            h1{
+                color:white;
+            }
+
+        </style>
+
+
+    </head>
+
+    <body>
+         <h1>Hello And Welcome To Touch Tester!</h1>
+
+         <h1>X Coordinate:</h1><h1 id="updaterX"></h1><br>
+         <h1>Y Coordinate:</h1><h1 id="updaterY"></h1><br>
+         <h1>Final Slope:</h1><h1 id="slope"></h1><br>
+         <h1>Number of scrolls is:</h1><h1 id="scrollCounts"></h1><br>
+         <h1>You are a: </h1><h1 id="inference"></h1><br>
+                   
+    </body>
+    <script>
+  
+var xInitial;
+var yInitial;
+var xFinal;
+var yFinal;
+
+var slope=0;
+
+var inference="none";
+
+var scrollCounts=0;
+
+  window.addEventListener('load',function(){
+    //we will display the point of contact
+      document.body.addEventListener('touchstart',function(e){
+        xInitial=e.changedTouches[0].pageX;
+        yInitial=e.changedTouches[0].pageY;
+        document.getElementById('updaterX').innerHTML=xInitial;
+        document.getElementById('updaterY').innerHTML=yInitial;
+        e.preventDefault();
+      },false)
+
+
+      document.body.addEventListener('touchmove',function(e){
+          var touchObject=e.changedTouches[0];
+          var x=touchObject.pageX;
+          var y=touchObject.pageY;
+          document.getElementById('updaterX').innerHTML=x;
+          document.getElementById('updaterY').innerHTML=y;
+          e.preventDefault();
+
+      },false)
+
+      document.body.addEventListener('touchend',function(e){
+          var touchObject=e.changedTouches[0];
+         xFinal=touchObject.pageX;
+         yFinal=touchObject.pageY;
+          document.getElementById('updaterX').innerHTML=xFinal;
+          document.getElementById('updaterY').innerHTML=yFinal;
+          
+          slope=(yFinal-yInitial)/(xFinal-xInitial);
+
+          document.getElementById('slope').innerHTML=slope;
+         
+
+        scrollCounts++;
+        if(slope<0){
+            inference="righty";
+
+        }
+        else{
+            inference="lefty";
+        }
+        
+        document.getElementById('inference').innerHTML=inference;
+        document.getElementById('scrollCounts').innerHTML=scrollCounts;
+         
+ e.preventDefault();
+      },false)
+  },false)
+
+</script>
+</html>
