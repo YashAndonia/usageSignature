@@ -34,6 +34,8 @@ var yFinal;
 var slope=0;
 
 var inference="none";
+var lefty=0;
+var righty=0;
 
 var scrollCounts=0;
 
@@ -64,21 +66,28 @@ var scrollCounts=0;
          yFinal=touchObject.pageY;
           document.getElementById('updaterX').innerHTML=xFinal;
           document.getElementById('updaterY').innerHTML=yFinal;
-          
+          if(xFinal-xInitial!=0)
           slope=(yFinal-yInitial)/(xFinal-xInitial);
-
+        else
+        slope=1;
           document.getElementById('slope').innerHTML=slope;
          
 
         scrollCounts++;
         if(slope<0){
-            inference="righty";
+            righty++;
 
         }
         else{
-            inference="lefty";
+           lefty++;
         }
         
+        if(lefty>righty){
+            inference='lefty';
+        }
+        else{
+            inference='righty';
+        }
         document.getElementById('inference').innerHTML=inference;
         document.getElementById('scrollCounts').innerHTML=scrollCounts;
          
