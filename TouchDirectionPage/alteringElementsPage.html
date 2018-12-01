@@ -68,6 +68,8 @@
 <h1>Final Slope:</h1><h1 id="slope"></h1><br>
 <h1>Number of scrolls is:</h1><h1 id="scrollCounts"></h1><br>
 <h1>You are a: </h1><h1 id="inference"></h1><br>
+<h1>You would prefer an arrangement of: </h1><h1 id="preferredArrangement"></h1><br>
+
 
 <div class="navBar">
    <div class="icon" id="icon1">A</div>
@@ -107,19 +109,24 @@
 <br><img class="imageForUser" src="https://i.ytimg.com/vi/SfLV8hD7zX4/maxresdefault.jpg">
         
     </body>
+
+
+
     <script>
   
 var xInitial;
 var yInitial;
 var xFinal;
 var yFinal;
+var numberOfIcons=4;
 var iconTouchCounter=[0,0,0,0];
 
+var elementList=['icon1','icon2','icon3','icon4'];
 var slope=0;
 
 var inference="none";
 var lefty=0;
-var righty=0;
+var righty=0; 
 
 var scrollCounts=0;
 
@@ -132,19 +139,30 @@ var scrollCounts=0;
 
 //to check for click on an icon
 document.getElementById('icon1').addEventListener('touchstart',function(){
-        iconTouchCounter[0]++;
+        index=findIndex('a');
+        iconTouchCounter[index]++;
+        sort();
         document.getElementById('whoYouTouched').innerHTML='You clicked on A';
     })
 document.getElementById('icon2').addEventListener('touchstart',function(){
-        iconTouchCounter[1]++;
+    index=findIndex('b');
+        iconTouchCounter[index]++;
+        
+        sort();
         document.getElementById('whoYouTouched').innerHTML='You clicked on B';
     })
 document.getElementById('icon3').addEventListener('touchstart',function(){
-        iconTouchCounter[2]++;
+    index=findIndex('c');
+        iconTouchCounter[index]++;
+        
+        sort();
         document.getElementById('whoYouTouched').innerHTML='You clicked on C';
     })
 document.getElementById('icon4').addEventListener('touchstart',function(){
-        iconTouchCounter[3]++;
+    index=findIndex('d');
+        iconTouchCounter[index]++;
+        
+        sort();
         document.getElementById('whoYouTouched').innerHTML='You clicked on D';
     })
 
@@ -191,20 +209,29 @@ document.getElementById('icon4').addEventListener('touchstart',function(){
         }
         
 
+   
+
+
+//deciding the final inference and changing the system accordi9ngly
+
 
         if(lefty>righty){
             inference='lefty';            
             document.getElementById('account_name').style.left=0;
+            //max to min order since lefty would get max first
+            document.getElementById('preferredArrangement').innerHTML=elementList[3]+elementList[2]+elementList[1]+elementList[0];
         }
         else{
             inference='righty';
             document.getElementById('account_name').style.left=document.body.clientWidth-document.getElementById('account_name').clientWidth;
+            //min to max order
+            document.getElementById('preferredArrangement').innerHTML=elementList[0]+elementList[1]+elementList[2]+elementList[3];
         }
 
         
         document.getElementById('inference').innerHTML=inference;
         document.getElementById('scrollCounts').innerHTML=scrollCounts;
-         
+      
  e.preventDefault();
       },false)
   },false)
@@ -212,7 +239,43 @@ document.getElementById('icon4').addEventListener('touchstart',function(){
   
   
 
+function sort(){
+            
+
+//sorting of the elements as per number of touches
+
+        for(var i=0;i<numberOfIcons;i++){
+            var c;
+            var x;
+            for(var j=i;j<numberOfIcons;j++){
+                if(iconTouchCounter[i]>iconTouchCounter[j]){
+                    c=iconTouchCounter[j];
+                    iconTouchCounter[j]= iconTouchCounter[i];
+                    iconTouchCounter[i]=c;//sorting the number of touches
+                     
+                    x=elementList[j];
+                    elementList[j]=elementList[i];
+                    elementList[i]=x;
+                    
+                    //sorintg the elements themselves, min to max. min should be farthest away. max shold be closest to the user hand
+
+
+
+                }
+            }
+
+        }
+}
   
+function findIndex(a){
+    var posn=0;
+    for(var i=0;i<numberOfIcons;i++){
+        if(elementList[i]==a)
+            posn=i;
+    }
+return posn;
+}
+
 
 function nextPage(){
     window.location.href="userProfile.html";
