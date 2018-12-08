@@ -72,10 +72,10 @@
 
 
 <div class="navBar">
-   <div class="icon" id="icon1">A</div>
-   <div class="icon" id="icon2">B</div>
-   <div class="icon" id="icon3">C</div>
-   <div class="icon" id="icon4">D</div>
+   <div class="icon" id='icon1'>a</div>
+   <div class="icon" id='icon2'>b</div>
+   <div class="icon" id='icon3'>c</div>
+   <div class="icon" id='icon4'>d</div>
    
 </div>
 
@@ -121,7 +121,8 @@ var yFinal;
 var numberOfIcons=4;
 var iconTouchCounter=[0,0,0,0];
 
-var elementList=['icon1','icon2','icon3','icon4'];
+var elementList=['a','b','c','d'];
+var idList=['icon1','icon2','icon3','icon4'];
 var slope=0;
 
 var inference="none";
@@ -139,27 +140,27 @@ var scrollCounts=0;
 
 //to check for click on an icon
 document.getElementById('icon1').addEventListener('touchstart',function(){
-        index=findIndex('a');
+        index=findIndex(document.getElementById('icon1').innerText);
         iconTouchCounter[index]++;
         sort();
         document.getElementById('whoYouTouched').innerHTML='You clicked on A';
     })
 document.getElementById('icon2').addEventListener('touchstart',function(){
-    index=findIndex('b');
+    index=findIndex(document.getElementById('icon2').innerText);
         iconTouchCounter[index]++;
         
         sort();
         document.getElementById('whoYouTouched').innerHTML='You clicked on B';
     })
 document.getElementById('icon3').addEventListener('touchstart',function(){
-    index=findIndex('c');
+    index=findIndex(document.getElementById('icon3').innerText);
         iconTouchCounter[index]++;
         
         sort();
         document.getElementById('whoYouTouched').innerHTML='You clicked on C';
     })
 document.getElementById('icon4').addEventListener('touchstart',function(){
-    index=findIndex('d');
+    index=findIndex(document.getElementById('icon4').innerText);
         iconTouchCounter[index]++;
         
         sort();
@@ -219,13 +220,17 @@ document.getElementById('icon4').addEventListener('touchstart',function(){
             inference='lefty';            
             document.getElementById('account_name').style.left=0;
             //max to min order since lefty would get max first
-            document.getElementById('preferredArrangement').innerHTML=elementList[3]+elementList[2]+elementList[1]+elementList[0];
+            //document.getElementById('preferredArrangement').innerHTML=elementList[3]+elementList[2]+elementList[1]+elementList[0];
+            document.getElementById('preferredArrangement').innerHTML="";
+            moveTheElementsUnoRev();
         }
         else{
             inference='righty';
             document.getElementById('account_name').style.left=document.body.clientWidth-document.getElementById('account_name').clientWidth;
             //min to max order
-            document.getElementById('preferredArrangement').innerHTML=elementList[0]+elementList[1]+elementList[2]+elementList[3];
+            //document.getElementById('preferredArrangement').innerHTML=elementList[0]+elementList[1]+elementList[2]+elementList[3];
+            document.getElementById('preferredArrangement').innerHTML="";
+            moveTheElementsUno();
         }
 
         
@@ -265,6 +270,27 @@ function sort(){
             }
 
         }
+//moveTheElementsUno();
+}
+
+
+
+//METHOD 1: DIRECT INSERTION OF THE ICON INTO THE CORRECT POSITION AND READJUSTMENT OF THE ICONS ACCORDING TO THE MAXIMUM TOUCH
+function moveTheElementsUno(){
+    var allIcons=document.getElementsByClassName('icons');
+    for(var i=0;i<numberOfIcons;i++){
+        document.getElementById(idList[i]).innerHTML=elementList[i];
+        document.getElementById('preferredArrangement').innerHTML+=elementList[i];
+    }
+
+}
+function moveTheElementsUnoRev(){
+    var allIcons=document.getElementsByClassName('icons');
+    for(var i=0;i<numberOfIcons;i++){
+        document.getElementById(idList[i]).innerHTML=elementList[numberOfIcons-i-1];
+        document.getElementById('preferredArrangement').innerHTML+=elementList[numberOfIcons-1-i];
+    }
+   // document.getElementById('preferredArrangement').innerHTML=elementList[3]+elementList[2]+elementList[1]+elementList[0];
 }
   
 function findIndex(a){
